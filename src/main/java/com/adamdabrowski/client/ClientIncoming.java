@@ -2,6 +2,7 @@ package com.adamdabrowski.client;
 
 import com.adamdabrowski.Message;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.SocketException;
@@ -24,7 +25,7 @@ public class ClientIncoming implements Runnable {
                 } else {
                     System.out.printf("Response: %s\n\n", message.toString());
                 }
-            } catch (SocketException e) {
+            } catch (SocketException | EOFException e) {
                 return; // Socket closed
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

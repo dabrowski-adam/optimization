@@ -33,12 +33,18 @@ public class ClientOutgoing implements Runnable {
                 String action = arr[0].toUpperCase();
                 String function = arr[1];
 
+                switch (function.toUpperCase()) {
+                    case "ROSENBROCK":
+                        function = "f(x,y) = (1 - x)^2 + 100*(y - x^2)^2";
+                        break;
+                }
+
                 switch (action) {
                     case "OPTIMIZE":
-                        output.writeObject(new Message(MessageType.NYI, function));
+                        output.writeObject(new Message(MessageType.OPTIMIZE, function));
                         break;
                     case "VISUALIZE":
-                        output.writeObject(new Message(MessageType.NYI, function));
+                        output.writeObject(new Message(MessageType.VISUALIZE, function));
                         break;
                     default:
                         break;

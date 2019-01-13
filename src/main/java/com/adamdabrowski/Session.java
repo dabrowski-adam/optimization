@@ -1,5 +1,9 @@
 package com.adamdabrowski;
 
+import com.adamdabrowski.optimization.Genetic;
+import com.adamdabrowski.optimization.Optimizer;
+import com.adamdabrowski.optimization.SimulatedAnnealing;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,17 +30,16 @@ public class Session implements Runnable, AutoCloseable {
             loop: for (Message msg = readMessage(); msg != null; msg = readMessage()) {
                 System.out.printf("%s :: %s | %s\n", id, msg.type, msg.payload);
                 switch (msg.type) {
-                    case HELLO:
-                        sendMessage(new Message(MessageType.NYI, ""));
-                        break;
                     case BYE:
-                        sendMessage(new Message(MessageType.NYI, ""));
+                        sendMessage(new Message(MessageType.NYI, "Good bye."));
                         break loop;
-                    case ERROR:
-                        sendMessage(new Message(MessageType.NYI, ""));
+                    case OPTIMIZE:
+                        Optimizer optimizer = new SimulatedAnnealing();
+                        String result = optimizer.Optimize(msg.payload);
+                        sendMessage(new Message(MessageType.TEXT, result));
                         break;
-                    case TEXT:
-                        sendMessage(new Message(MessageType.NYI, ""));
+                    default:
+                        sendMessage(new Message(MessageType.NYI, "Not yet implemented."));
                         break;
                 }
 
