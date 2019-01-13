@@ -1,4 +1,4 @@
-package com.adamdabrowski.Client;
+package com.adamdabrowski.client;
 
 import com.adamdabrowski.Message;
 

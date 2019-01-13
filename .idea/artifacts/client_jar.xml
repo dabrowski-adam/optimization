@@ -3,9 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts/client_jar</output-path>
     <root id="archive" name="client.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/com/adamdabrowski/Client/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/com/adamdabrowski/client/META-INF/MANIFEST.MF" />
       </element>
-      <element id="module-output" name="Exercise 5" />
+      <element id="module-output" name="com.adamdabrowski.Exercise_5.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mariuszgromada.math/MathParser.org-mXparser/4.0.0/8e3601497d3904daad2b003349af4e59e63d8272/MathParser.org-mXparser-4.0.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
