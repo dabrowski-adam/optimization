@@ -31,15 +31,20 @@ public class Session implements Runnable, AutoCloseable {
                 System.out.printf("%s :: %s | %s\n", id, msg.type, msg.payload);
                 switch (msg.type) {
                     case BYE:
-                        sendMessage(new Message(MessageType.NYI, "Good bye."));
+                        sendMessage(new Message(MessageType.NYI, AlgorithmType.NONE, "Good bye."));
                         break loop;
                     case OPTIMIZE:
-                        Optimizer optimizer = new SimulatedAnnealing();
+                        Optimizer optimizer;
+                        if (msg.algorithm == AlgorithmType.ANNEALING) {
+                            optimizer = new SimulatedAnnealing();
+                        } else {
+                            optimizer = new Genetic();
+                        }
                         String result = optimizer.Optimize(msg.payload);
-                        sendMessage(new Message(MessageType.TEXT, result));
+                        sendMessage(new Message(MessageType.TEXT, msg.algorithm, result));
                         break;
                     default:
-                        sendMessage(new Message(MessageType.NYI, "Not yet implemented."));
+                        sendMessage(new Message(MessageType.NYI, AlgorithmType.NONE, "Not yet implemented."));
                         break;
                 }
 

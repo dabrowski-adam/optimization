@@ -2,6 +2,7 @@ package com.adamdabrowski.client;
 
 import com.adamdabrowski.Message;
 import com.adamdabrowski.MessageType;
+import com.adamdabrowski.AlgorithmType;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -21,17 +22,21 @@ public class ClientOutgoing implements Runnable {
 
         try {
             do {
-                System.out.print("\n(optimize|visualize) f(x,y) = ...\n");
+                System.out.print("\n(optimize|visualize) (genetic|annealing) f(x,y) = ...\n");
 
                 input = scanner.nextLine();
-                String[] arr = input.split(" ", 2);
+                String[] arr = input.split(" ", 3);
 
-                if (arr.length != 2) {
+                if (arr.length != 3) {
                     continue;
                 }
 
                 String action = arr[0].toUpperCase();
-                String function = arr[1];
+                String algorithm = arr[1].toUpperCase();
+                String function = arr[2];
+
+                MessageType messageType;
+                AlgorithmType algorithmType;
 
                 switch (function.toUpperCase()) {
                     case "ROSENBROCK":
@@ -39,19 +44,32 @@ public class ClientOutgoing implements Runnable {
                         break;
                 }
 
-                switch (action) {
-                    case "OPTIMIZE":
-                        output.writeObject(new Message(MessageType.OPTIMIZE, function));
+                switch (algorithm) {
+                    case "GENETIC":
+                        algorithmType = AlgorithmType.GENETIC;
                         break;
-                    case "VISUALIZE":
-                        output.writeObject(new Message(MessageType.VISUALIZE, function));
+                    case "ANNEALING":
+                        algorithmType = AlgorithmType.ANNEALING;
                         break;
                     default:
-                        break;
+                        continue;
                 }
+
+                switch (action) {
+                    case "OPTIMIZE":
+                        messageType = MessageType.OPTIMIZE;
+                        break;
+                    case "VISUALIZE":
+                        messageType = MessageType.VISUALIZE;
+                        break;
+                    default:
+                        continue;
+                }
+
+                output.writeObject(new Message(messageType, algorithmType, function));
             } while (!Thread.interrupted());
 
-            output.writeObject(new Message(MessageType.BYE, ""));
+            output.writeObject(new Message(MessageType.BYE, AlgorithmType.NONE, ""));
         } catch (IOException e) {
             e.printStackTrace();
         }

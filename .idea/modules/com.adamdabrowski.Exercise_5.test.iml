@@ -6,7 +6,7 @@
     <content url="file://$MODULE_DIR$/../../src/test" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="com.adamdabrowski.Exercise_5.main" />
+    <orderEntry type="library" name="Gradle: org.jzy3d:jzy3d-api:0.9.1" level="project" />
     <orderEntry type="library" name="Gradle: org.mariuszgromada.math:MathParser.org-mXparser:4.0.0" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />

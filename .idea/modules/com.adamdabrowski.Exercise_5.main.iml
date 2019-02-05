@@ -10,5 +10,14 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.mariuszgromada.math:MathParser.org-mXparser:4.0.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: org.jzy3d:jzy3d-api:0.9.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../Could not find org.jzy3d:jzy3d-api:0.9.1.&#10;Searched in the following locations:&#10;  - https:/repo.maven.apache.org/maven2/org/jzy3d/jzy3d-api/0.9.1/jzy3d-api-0.9.1.pom&#10;  - https:/repo.maven.apache.org/maven2/org/jzy3d/jzy3d-api/0.9.1/jzy3d-api-0.9.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
